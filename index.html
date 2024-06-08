@@ -3,24 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swim Time Converter</title>
+    <title>Edson's Swim Time Warp</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <div class="container">
-        <h1>Swim Time Converter</h1>
+        <h1>Edson's Swim Time Warp</h1>
         <form id="conversionForm">
             <div class="form-group">
-                <label for="timeMinutes">Minutes:</label>
-                <input type="number" id="timeMinutes" min="0" value="0" required>
-            </div>
-            <div class="form-group">
-                <label for="timeSeconds">Seconds:</label>
-                <input type="number" id="timeSeconds" min="0" max="59" value="0" required>
-            </div>
-            <div class="form-group">
-                <label for="timeHundredths">Hundredths:</label>
-                <input type="number" id="timeHundredths" min="0" max="99" value="0" required>
+                <label for="timeInput">Enter Time (MM:SS.hh):</label>
+                <input type="text" id="timeInput" placeholder="00:00.00" required>
             </div>
             <div class="form-group">
                 <label for="courseType">Select Course Type:</label>
@@ -52,6 +45,8 @@
         </form>
         <div id="result"></div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="conversionTable.js"></script>
     <script src="scripts/main.js"></script>
 </body>

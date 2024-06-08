@@ -1,3 +1,4 @@
+/* styles/styles.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -60,4 +61,14 @@ button:hover:enabled {
 #result {
     margin-top: 20px;
     font-weight: bold;
+    font-size: 1.5em;
+    padding: 20px;
+    background-color: #e7f3fe;
+    border: 1px solid #b3d7ff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#result p {
+    margin: 0;
 }
