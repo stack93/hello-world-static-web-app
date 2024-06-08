@@ -1,12 +1,12 @@
 // scripts/main.js
 
-$(function() {
-    // Initialize the spinner for the time input
-    $("#timeInput").spinner({
-        min: 0,
-        step: 0.01,
-        numberFormat: "n"
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    const timeInput = document.getElementById('timeInput');
+    const courseTypeSelect = document.getElementById('courseType');
+    const strokeSelect = document.getElementById('stroke');
+    const distanceSelect = document.getElementById('distance');
+    const submitButton = document.querySelector('button[type="submit"]');
+    const resultDiv = document.getElementById('result');
 
     const distanceOptions = {
         'SCY': {
@@ -32,51 +32,48 @@ $(function() {
         }
     };
 
-    $('#courseType').on('change', function() {
-        const courseType = this.value;
-        const strokeSelect = $('#stroke');
-        const distanceSelect = $('#distance');
-        const submitButton = $('button[type="submit"]');
-        
-        strokeSelect.prop('disabled', false);
-        distanceSelect.prop('disabled', true);
+    courseTypeSelect.addEventListener('change', function() {
+        const courseType = courseTypeSelect.value;
+        strokeSelect.disabled = false;
+        distanceSelect.disabled = true;
 
-        distanceSelect.html('<option value="" disabled selected>Select Distance</option>');
-        submitButton.prop('disabled', true);
+        strokeSelect.value = '';
+        distanceSelect.innerHTML = '<option value="" disabled selected>Select Distance</option>';
+        submitButton.disabled = true;
     });
 
-    $('#stroke').on('change', function() {
-        const stroke = this.value;
-        const courseType = $('#courseType').val();
-        const distanceSelect = $('#distance');
-        const submitButton = $('button[type="submit"]');
-        
-        distanceSelect.prop('disabled', false);
+    strokeSelect.addEventListener('change', function() {
+        const stroke = strokeSelect.value;
+        const courseType = courseTypeSelect.value;
+        distanceSelect.disabled = false;
 
-        distanceSelect.html('<option value="" disabled selected>Select Distance</option>');
+        distanceSelect.innerHTML = '<option value="" disabled selected>Select Distance</option>';
         
         distanceOptions[courseType][stroke].forEach(distance => {
-            distanceSelect.append(new Option(distance, distance));
+            const option = document.createElement('option');
+            option.value = distance;
+            option.textContent = distance;
+            distanceSelect.appendChild(option);
         });
 
-        submitButton.prop('disabled', true);
+        submitButton.disabled = true;
     });
 
-    $('#distance').on('change', function() {
-        $('button[type="submit"]').prop('disabled', false);
+    distanceSelect.addEventListener('change', function() {
+        submitButton.disabled = false;
     });
 
-    $('#conversionForm').on('submit', function(event) {
+    document.getElementById('conversionForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const timeInput = $('#timeInput').val();
-        const courseType = $('#courseType').val();
-        const stroke = $('#stroke').val();
-        const distance = $('#distance').val();
+        const timeInputValue = timeInput.value;
+        const courseType = courseTypeSelect.value;
+        const stroke = strokeSelect.value;
+        const distance = distanceSelect.value;
 
-        const timeInSeconds = convertToSeconds(timeInput);
+        const timeInSeconds = convertToSeconds(timeInputValue);
         if (timeInSeconds === null) {
-            $('#result').text('Invalid time format. Please enter a valid time.');
+            resultDiv.innerText = 'Invalid time format. Please enter a valid time.';
             return;
         }
 
@@ -99,31 +96,27 @@ $(function() {
         const formattedTimeLCM = courseType !== 'LCM' ? `LCM: ${convertToFormattedTime(convertedTime.LCM)}` : '';
         const formattedTimeSCM = courseType !== 'SCM' ? `SCM: ${convertToFormattedTime(convertedTime.SCM)}` : '';
 
-        const resultHTML = `
+        resultDiv.innerHTML = `
             ${formattedTimeSCY ? `<p>${formattedTimeSCY}</p>` : ''}
             ${formattedTimeLCM ? `<p>${formattedTimeLCM}</p>` : ''}
             ${formattedTimeSCM ? `<p>${formattedTimeSCM}</p>` : ''}
         `;
-
-        $('#result').html(resultHTML);
     });
 
     function convertToSeconds(time) {
         const parts = time.split(':');
         if (parts.length === 1) {
-            // Case: SS.hh
+            // Case: SS or SS.hh
             const secondsParts = parts[0].split('.');
-            if (secondsParts.length !== 2) return null;
             const seconds = parseInt(secondsParts[0], 10);
-            const hundredths = parseInt(secondsParts[1], 10);
+            const hundredths = secondsParts.length === 2 ? parseInt(secondsParts[1], 10) : 0;
             return seconds + (hundredths / 100);
         } else if (parts.length === 2) {
-            // Case: MM:SS.hh
+            // Case: MM:SS or MM:SS.hh
             const minutes = parseInt(parts[0], 10);
             const secondsParts = parts[1].split('.');
-            if (secondsParts.length !== 2) return null;
             const seconds = parseInt(secondsParts[0], 10);
-            const hundredths = parseInt(secondsParts[1], 10);
+            const hundredths = secondsParts.length === 2 ? parseInt(secondsParts[1], 10) : 0;
             return (minutes * 60) + seconds + (hundredths / 100);
         } else {
             return null;
