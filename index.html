@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>hello world</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swim Time Converter</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <h1>hello, jellycrock!</h1>
-    <h2>this is the second change</h2>
-    <h3>this is the third change</h3>
-    <h3>this is the fourth change</h3>
+    <div class="container">
+        <h1>Swim Time Converter</h1>
+        <form id="conversionForm">
+            <label for="timeInput">Enter Time (e.g., 1:23.45 or 83.45):</label>
+            <input type="text" id="timeInput" required>
+            
+            <label for="courseType">Select Course Type:</label>
+            <select id="courseType" required>
+                <option value="SCY">Short Course Yards (SCY)</option>
+                <option value="LCM">Long Course Meters (LCM)</option>
+                <option value="SCM">Short Course Meters (SCM)</option>
+            </select>
+            
+            <label for="distance">Select Distance:</label>
+            <select id="distance" required>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+                <option value="800">800</option>
+                <option value="1000">1000</option>
+                <option value="1500">1500</option>
+                <option value="1650">1650</option>
+            </select>
+            
+            <label for="stroke">Select Stroke:</label>
+            <select id="stroke" required>
+                <!-- Stroke options will be populated based on the selected distance -->
+            </select>
+            
+            <button type="submit">Convert</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="conversionTable.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
