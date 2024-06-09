@@ -30,14 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    const scmToLcmAddition = {
-        'Free': { '50': 0.8, '100': 1.6, '200': 3.2, '400': 6.4, '800': 12.8, '1500': 24 },
-        'Back': { '50': 0.6, '100': 1.2, '200': 2.4 },
-        'Breast': { '50': 1.0, '100': 2.0, '200': 4.0 },
-        'Fly': { '50': 0.7, '100': 1.4, '200': 2.8 },
-        'IM': { '200': 3.2, '400': 6.4 }
-    };
-
     courseTypeSelect.addEventListener('change', function() {
         strokeSelect.disabled = false;
         distanceSelect.disabled = true;
