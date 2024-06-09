@@ -28,12 +28,18 @@ function convertToFormattedTime(seconds) {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
-function handleConversion(timeInputValue, courseType, stroke, distance) {
-    const timeInSeconds = convertToSeconds(timeInputValue);
-    if (timeInSeconds === null) {
-        return 'Invalid time format. Please enter a valid time.';
-    }
+function convertToFormattedTime(seconds) {
+    if (isNaN(seconds)) return 'N/A';
 
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = (seconds % 60).toFixed(2);
+
+    const formattedSeconds = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
+
+    return `${minutes}:${formattedSeconds}`;
+}
+
+function handleConversion(timeInSeconds, courseType, stroke, distance) {
     const eventKey = `${distance}${stroke}`;
 
     let convertedTime = {};
