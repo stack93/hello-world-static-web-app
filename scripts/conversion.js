@@ -1,11 +1,3 @@
-const scmToLcmAddition = {
-    'Free': { '50': 0.8, '100': 1.6, '200': 3.2, '400': 6.4, '800': 12.8, '1500': 24 },
-    'Back': { '50': 0.6, '100': 1.2, '200': 2.4 },
-    'Breast': { '50': 1.0, '100': 2.0, '200': 4.0 },
-    'Fly': { '50': 0.7, '100': 1.4, '200': 2.8 },
-    'IM': { '200': 3.2, '400': 6.4 }
-};
-
 function convertToSeconds(time) {
     const parts = time.split(':');
     let minutes = 0, seconds = 0, hundredths = 0;
@@ -42,7 +34,7 @@ function handleConversion(timeInputValue, courseType, stroke, distance) {
         return 'Invalid time format. Please enter a valid time.';
     }
 
-    const eventKey = distance + stroke;
+    const eventKey = `${distance}${stroke}`;
 
     let convertedTime = {};
 
@@ -50,14 +42,14 @@ function handleConversion(timeInputValue, courseType, stroke, distance) {
         convertedTime.LCM = timeInSeconds / (conversionTable.SCY_to_LCM[eventKey] || 1);
         convertedTime.SCM = timeInSeconds / (conversionTable.SCY_to_SCM[eventKey] || 1);
     } else if (courseType === 'LCM') {
-        convertedTime.SCY = timeInSeconds * (conversionTable.SCY_to_LCM[eventKey] || 1);
-        convertedTime.SCM = timeInSeconds - (scmToLcmAddition[stroke][distance] || 0);
+        const scyTime = timeInSeconds * (conversionTable.SCY_to_LCM[eventKey] || 1);
+        convertedTime.SCY = scyTime;
+        convertedTime.SCM = scyTime / (conversionTable.SCY_to_SCM[eventKey] || 1);
     } else if (courseType === 'SCM') {
-        convertedTime.SCY = timeInSeconds * (conversionTable.SCY_to_SCM[eventKey] || 1);
-        convertedTime.LCM = timeInSeconds + (scmToLcmAddition[stroke][distance] || 0);
+        const scyTime = timeInSeconds * (conversionTable.SCY_to_SCM[eventKey] || 1);
+        convertedTime.SCY = scyTime;
+        convertedTime.LCM = scyTime / (conversionTable.SCY_to_LCM[eventKey] || 1);
     }
-
-    console.log('Converted Time:', convertedTime);
 
     const formattedTimeSCY = courseType !== 'SCY' ? `SCY: ${convertToFormattedTime(convertedTime.SCY)}` : '';
     const formattedTimeLCM = courseType !== 'LCM' ? `LCM: ${convertToFormattedTime(convertedTime.LCM)}` : '';
