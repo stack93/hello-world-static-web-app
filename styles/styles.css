@@ -2,11 +2,11 @@ body {
     font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align to the top */
+    align-items: flex-start;
     min-height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
-    padding: 0; /* Remove padding */
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -17,7 +17,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
-    margin-top: 20px; /* Add a small margin at the top */
+    margin-top: 20px;
 }
 
 h1 {
@@ -43,10 +43,11 @@ label {
 .time-inputs {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Ensure the reset button is right-aligned */
 }
 
 .time-inputs input {
-    width: 70px;  /* Increased width */
+    width: 70px;
     padding: 10px;
     font-size: 18px;
     margin: 0 5px;
@@ -55,6 +56,24 @@ label {
     border-radius: 6px;
     transition: border-color 0.3s;
     text-align: center;
+}
+
+.time-inputs button {
+    padding: 10px 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #e0e0e0; /* Less prominent color */
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: auto; /* Less wide */
+    height: 40px; /* Ensure vertical alignment */
+}
+
+.time-inputs button:hover {
+    background-color: #ccc;
+    color: #333;
 }
 
 input:focus, select:focus, button:focus {
@@ -73,7 +92,7 @@ input, select, button {
     transition: border-color 0.3s;
 }
 
-button {
+button[type="submit"] {
     background-color: #007bff;
     color: white;
     border: none;
@@ -82,11 +101,11 @@ button {
     transition: background-color 0.3s;
 }
 
-button:disabled {
+button[type="submit"]:disabled {
     background-color: #ccc;
 }
 
-button:hover:enabled {
+button[type="submit"]:hover:enabled {
     background-color: #0056b3;
 }
 
@@ -112,7 +131,7 @@ button:hover:enabled {
     }
     .container {
         padding: 20px;
-        margin-top: 10px; /* Adjust margin for smaller screens */
+        margin-top: 10px;
     }
     h1 {
         font-size: 24px;
@@ -125,6 +144,11 @@ button:hover:enabled {
         font-size: 1.5em;
     }
     .time-inputs input {
-        width: 60px;  /* Adjusted width for smaller screens */
+        width: 60px;
+    }
+    .time-inputs button {
+        padding: 10px;
+        font-size: 16px;
+        height: 35px; /* Ensure vertical alignment on smaller screens */
     }
 }

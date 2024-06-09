@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const minutesInput = document.getElementById('minutesInput');
     const secondsInput = document.getElementById('secondsInput');
     const hundredthsInput = document.getElementById('hundredthsInput');
+    const resetButton = document.getElementById('resetButton');
     const courseTypeSelect = document.getElementById('courseType');
     const strokeSelect = document.getElementById('stroke');
     const distanceSelect = document.getElementById('distance');
@@ -93,5 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const isValid = secondsInput.value.trim() !== '' && hundredthsInput.value.trim() !== '';
             submitButton.disabled = !isValid || !courseTypeSelect.value || !strokeSelect.value || !distanceSelect.value;
         });
+    });
+
+    resetButton.addEventListener('click', function() {
+        minutesInput.value = '';
+        secondsInput.value = '';
+        hundredthsInput.value = '';
+        resultDiv.innerHTML = '';
+        submitButton.disabled = true;
     });
 });
