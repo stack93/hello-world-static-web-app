@@ -1,13 +1,15 @@
 /* styles/styles.css */
+
 body {
     font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Top justify */
+    align-items: center;
     min-height: 100vh;
     background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .container {
@@ -17,8 +19,6 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    margin-top: 20px; /* Add some top margin */
-    text-align: center;
 }
 
 h1 {
@@ -26,10 +26,11 @@ h1 {
     font-weight: 500;
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
 }
 
 .form-group {
-    margin-bottom: 20px; /* Increase bottom margin */
+    margin-bottom: 20px;
     text-align: left;
 }
 
@@ -42,13 +43,13 @@ label {
 
 input, select, button {
     width: 100%;
-    padding: 15px; /* Increase padding for larger inputs */
+    padding: 15px;
     font-size: 16px;
     margin-bottom: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
-    transition: border-color 0.3s, background-color 0.3s;
+    transition: border-color 0.3s;
 }
 
 input:focus, select:focus, button:focus {
@@ -82,17 +83,28 @@ button:hover:enabled {
     border: 1px solid #b3d7ff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 #result p {
     margin: 0;
 }
 
-/* Add Material Design shadows */
-.md-shadow-2dp {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-}
-
-.md-shadow-4dp {
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    input, select, button {
+        padding: 12px;
+        font-size: 14px;
+    }
+    #result {
+        font-size: 1.2em;
+    }
 }
