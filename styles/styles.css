@@ -2,11 +2,11 @@ body {
     font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Align to the top */
     min-height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
-    padding: 20px;
+    padding: 0; /* Remove padding */
     box-sizing: border-box;
 }
 
@@ -17,6 +17,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
+    margin-top: 20px; /* Add a small margin at the top */
 }
 
 h1 {
@@ -111,6 +112,7 @@ button:hover:enabled {
     }
     .container {
         padding: 20px;
+        margin-top: 10px; /* Adjust margin for smaller screens */
     }
     h1 {
         font-size: 24px;
