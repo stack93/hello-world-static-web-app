@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         distanceSelect.innerHTML = '<option value="" disabled selected>Select Distance</option>';
         
-        distanceOptions[courseTypeSelect.value][strokeSelect.value].forEach(distance => {
+        const selectedCourseType = courseTypeSelect.value.split('-')[1]; // Extract the course type (SCY, LCM, SCM)
+        distanceOptions[selectedCourseType][strokeSelect.value].forEach(distance => {
             const option = document.createElement('option');
             option.value = distance;
             option.textContent = distance;

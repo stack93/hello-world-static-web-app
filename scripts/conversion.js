@@ -40,26 +40,29 @@ function convertToFormattedTime(seconds) {
 }
 
 function handleConversion(timeInSeconds, courseType, stroke, distance) {
+    const gender = courseType.split('-')[0]; // Extract 'M' or 'W'
+    const course = courseType.split('-')[1]; // Extract 'SCY', 'LCM', or 'SCM'
+    
     const eventKey = `${distance}${stroke}`;
 
     let convertedTime = {};
 
-    if (courseType === 'SCY') {
-        convertedTime.LCM = timeInSeconds / (conversionTable.SCY_to_LCM[eventKey] || 1);
-        convertedTime.SCM = timeInSeconds / (conversionTable.SCY_to_SCM[eventKey] || 1);
-    } else if (courseType === 'LCM') {
-        const scyTime = timeInSeconds * (conversionTable.SCY_to_LCM[eventKey] || 1);
+    if (course === 'SCY') {
+        convertedTime.LCM = timeInSeconds / (conversionTable[gender].SCY_to_LCM[eventKey] || 1);
+        convertedTime.SCM = timeInSeconds / (conversionTable[gender].SCY_to_SCM[eventKey] || 1);
+    } else if (course === 'LCM') {
+        const scyTime = timeInSeconds * (conversionTable[gender].SCY_to_LCM[eventKey] || 1);
         convertedTime.SCY = scyTime;
-        convertedTime.SCM = scyTime / (conversionTable.SCY_to_SCM[eventKey] || 1);
-    } else if (courseType === 'SCM') {
-        const scyTime = timeInSeconds * (conversionTable.SCY_to_SCM[eventKey] || 1);
+        convertedTime.SCM = scyTime / (conversionTable[gender].SCY_to_SCM[eventKey] || 1);
+    } else if (course === 'SCM') {
+        const scyTime = timeInSeconds * (conversionTable[gender].SCY_to_SCM[eventKey] || 1);
         convertedTime.SCY = scyTime;
-        convertedTime.LCM = scyTime / (conversionTable.SCY_to_LCM[eventKey] || 1);
+        convertedTime.LCM = scyTime / (conversionTable[gender].SCY_to_LCM[eventKey] || 1);
     }
 
-    const formattedTimeSCY = courseType !== 'SCY' ? `SCY: ${convertToFormattedTime(convertedTime.SCY)}` : '';
-    const formattedTimeLCM = courseType !== 'LCM' ? `LCM: ${convertToFormattedTime(convertedTime.LCM)}` : '';
-    const formattedTimeSCM = courseType !== 'SCM' ? `SCM: ${convertToFormattedTime(convertedTime.SCM)}` : '';
+    const formattedTimeSCY = course !== 'SCY' ? `SCY: ${convertToFormattedTime(convertedTime.SCY)}` : '';
+    const formattedTimeLCM = course !== 'LCM' ? `LCM: ${convertToFormattedTime(convertedTime.LCM)}` : '';
+    const formattedTimeSCM = course !== 'SCM' ? `SCM: ${convertToFormattedTime(convertedTime.SCM)}` : '';
 
     return `
         ${formattedTimeSCY ? `<p>${formattedTimeSCY}</p>` : ''}
