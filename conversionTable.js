@@ -17,7 +17,7 @@ const conversionTable = {
             '200FreestyleRelay': 0.906, '400FreestyleRelay': 0.906, '800FreestyleRelay': 0.906, '200MedleyRelay': 0.906, '400MedleyRelay': 0.906
         }
     },
-    W:{
+    W: {
         SCY_to_LCM: {
             '50Free': 0.890, '100Free': 0.884, '200Free': 0.884, '400_500Free': 1.122, '800_1000Free': 1.13, '1500_1650Free': 0.985,
             '50Back': 0.890, '100Back': 0.863, '200Back': 0.867,

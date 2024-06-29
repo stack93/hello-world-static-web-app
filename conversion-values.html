@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion Values</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Conversion Values</h1>
+        <p>This table shows the conversion factors used to convert times between different courses (SCY, LCM, SCM). To convert a time from SCY to LCM, multiply the SCY time by the corresponding factor in the "SCY to LCM" column. Similarly, to convert a time from SCY to SCM, multiply by the factor in the "SCY to SCM" column.</p>
+        <div id="conversionValues"></div>
+        <div class="links">
+            <a href="index.html">Back to Converter</a>
+        </div>
+    </div>
+    <script src="conversionTable.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const conversionValuesDiv = document.getElementById('conversionValues');
+
+            const createTable = (conversionData, gender) => {
+                const table = document.createElement('table');
+                const thead = document.createElement('thead');
+                const tbody = document.createElement('tbody');
+
+                const headerRow = document.createElement('tr');
+                const headers = ['Event', 'SCY to LCM', 'SCY to SCM'];
+                headers.forEach(headerText => {
+                    const th = document.createElement('th');
+                    th.textContent = headerText;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+
+                Object.keys(conversionData.SCY_to_LCM).forEach(event => {
+                    const row = document.createElement('tr');
+
+                    const eventCell = document.createElement('td');
+                    eventCell.textContent = event;
+                    row.appendChild(eventCell);
+
+                    const lcmCell = document.createElement('td');
+                    lcmCell.textContent = conversionData.SCY_to_LCM[event].toFixed(3); // Ensure consistent number of digits
+                    row.appendChild(lcmCell);
+
+                    const scmCell = document.createElement('td');
+                    scmCell.textContent = conversionData.SCY_to_SCM[event].toFixed(3); // Ensure consistent number of digits
+                    row.appendChild(scmCell);
+
+                    tbody.appendChild(row);
+                });
+
+                table.appendChild(thead);
+                table.appendChild(tbody);
+                return table;
+            };
+
+            const menTable = createTable(conversionTable.M, 'Men');
+            const womenTable = createTable(conversionTable.W, 'Women');
+
+            const menHeader = document.createElement('h2');
+            menHeader.textContent = "Men's Conversion Values";
+            const womenHeader = document.createElement('h2');
+            womenHeader.textContent = "Women's Conversion Values";
+
+            conversionValuesDiv.appendChild(menHeader);
+            conversionValuesDiv.appendChild(menTable);
+            conversionValuesDiv.appendChild(womenHeader);
+            conversionValuesDiv.appendChild(womenTable);
+        });
+    </script>
+</body>
+</html>
