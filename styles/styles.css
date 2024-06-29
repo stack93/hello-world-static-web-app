@@ -45,6 +45,92 @@ label {
     color: #555;
 }
 
+.time-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure the reset button is right-aligned */
+}
+
+.time-inputs input {
+    width: 80px; /* Increased width for better touch target */
+    padding: 15px; /* Increased padding for better touch target */
+    font-size: 18px;
+    margin: 0 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+    text-align: center;
+}
+
+.time-inputs button {
+    padding: 15px 20px; /* Increased padding for better touch target */
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #e0e0e0; /* Less prominent color */
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: auto; /* Less wide */
+    height: auto; /* Ensure vertical alignment */
+    align-self: flex-end; /* Align to the bottom of the time input fields */
+}
+
+.time-inputs button:hover {
+    background-color: #ccc;
+    color: #333;
+}
+
+input:focus, select:focus, button:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 18px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:disabled {
+    background-color: #ccc;
+}
+
+button[type="submit"]:hover:enabled {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 1.8em;
+    padding: 25px;
+    background-color: #e7f3fe;
+    border: 1px solid #b3d7ff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#result p {
+    margin: 0;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -70,7 +156,7 @@ td {
 }
 
 .links {
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -94,6 +180,21 @@ td {
     }
     h1, h2 {
         font-size: 24px;
+    }
+    input, select, button {
+        padding: 14px;
+        font-size: 16px;
+    }
+    #result {
+        font-size: 1.5em;
+    }
+    .time-inputs input {
+        width: 60px;
+    }
+    .time-inputs button {
+        padding: 10px;
+        font-size: 16px;
+        height: auto; /* Ensure vertical alignment on smaller screens */
     }
     table, th, td {
         font-size: 14px;
