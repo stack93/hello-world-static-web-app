@@ -12,13 +12,13 @@
         <h1>Edson's Swim Time Warp</h1>
         <form id="conversionForm">
             <div class="form-group">
-                <label>Enter Time:</label>
+                <label for="minutesInput">Enter Time:</label>
                 <div class="time-inputs">
-                    <input type="number" id="minutesInput" placeholder="MM" min="0">
+                    <input type="number" id="minutesInput" placeholder="MM" min="0" aria-label="Minutes">
                     <span>:</span>
-                    <input type="number" id="secondsInput" placeholder="SS" min="0" max="59" required>
+                    <input type="number" id="secondsInput" placeholder="SS" min="0" max="59" required aria-label="Seconds">
                     <span>.</span>
-                    <input type="number" id="hundredthsInput" placeholder="hh" min="0" max="99" required>
+                    <input type="number" id="hundredthsInput" placeholder="hh" min="0" max="99" aria-label="Hundredths">
                     <button type="button" id="resetButton">Reset</button>
                 </div>
             </div>

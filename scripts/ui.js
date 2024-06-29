@@ -73,10 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const minutes = parseInt(minutesInput.value, 10) || 0;
         const seconds = parseInt(secondsInput.value, 10) || 0;
-        let hundredths = parseInt(hundredthsInput.value, 10) || 0;
+        let hundredths = parseInt(hundredthsInput.value, 10);
 
-        if (hundredths < 10 && hundredthsInput.value.length === 1) {
-            hundredths *= 10; // Treat single digit as tenths
+        if (isNaN(hundredths)) {
+            hundredths = 0; // Treat empty field as zero
         }
 
         const timeInSeconds = minutes * 60 + seconds + hundredths / 100;
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const timeInputs = [secondsInput, hundredthsInput];
     timeInputs.forEach(input => {
         input.addEventListener('input', function() {
-            const isValid = secondsInput.value.trim() !== '' && hundredthsInput.value.trim() !== '';
+            const isValid = secondsInput.value.trim() !== '';
             submitButton.disabled = !isValid || !courseTypeSelect.value || !strokeSelect.value || !distanceSelect.value;
         });
     });

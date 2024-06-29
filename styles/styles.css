@@ -47,8 +47,8 @@ label {
 }
 
 .time-inputs input {
-    width: 70px;
-    padding: 10px;
+    width: 80px; /* Increased width for better touch target */
+    padding: 15px; /* Increased padding for better touch target */
     font-size: 18px;
     margin: 0 5px;
     box-sizing: border-box;
@@ -59,7 +59,7 @@ label {
 }
 
 .time-inputs button {
-    padding: 10px 15px;
+    padding: 15px 20px; /* Increased padding for better touch target */
     font-size: 18px;
     border: none;
     border-radius: 6px;
@@ -68,7 +68,8 @@ label {
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     width: auto; /* Less wide */
-    height: 40px; /* Ensure vertical alignment */
+    height: auto; /* Ensure vertical alignment */
+    align-self: flex-end; /* Align to the bottom of the time input fields */
 }
 
 .time-inputs button:hover {
@@ -149,6 +150,6 @@ button[type="submit"]:hover:enabled {
     .time-inputs button {
         padding: 10px;
         font-size: 16px;
-        height: 35px; /* Ensure vertical alignment on smaller screens */
+        height: auto; /* Ensure vertical alignment on smaller screens */
     }
 }

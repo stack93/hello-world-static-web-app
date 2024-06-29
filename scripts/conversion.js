@@ -23,13 +23,6 @@ function convertToSeconds(time) {
 
 function convertToFormattedTime(seconds) {
     if (isNaN(seconds)) return 'N/A';
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = (seconds % 60).toFixed(2);
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-}
-
-function convertToFormattedTime(seconds) {
-    if (isNaN(seconds)) return 'N/A';
 
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = (seconds % 60).toFixed(2);
